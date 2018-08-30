@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.5)
 project(hanzi2pinyin)
 set(CMAKE_CXX_STANDARD 11)
+set(LIBRARY_OUTPUT_PATH ${PROJECT_BINARY_DIR}/../libs)
 
 add_library(hanzi2pinyin SHARED src/transfer.cpp)
 add_executable(main src/main.cpp)
