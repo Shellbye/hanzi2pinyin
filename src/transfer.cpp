@@ -29,11 +29,13 @@ std::string Transfer::get_pinyin(const std::string &word) {
     std::vector<std::string> words = split_name(word);
     for (auto const &w : words) {
         // chinese character to code point
+        BOOST_LOG_TRIVIAL(info) << "w " << w;
         int code_point = get_code_point(w);
-
+        BOOST_LOG_TRIVIAL(info) << "code_point " << code_point;
         // use code point to get pinyin
 
         std::string pinyin = pt.get<std::string>(std::to_string(code_point));
+        BOOST_LOG_TRIVIAL(info) << "pinyin " << pinyin;
         // adjust digit position
         std::string replaced = refactor_pinyin(pinyin);
         // move digit backwards
