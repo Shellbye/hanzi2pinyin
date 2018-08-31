@@ -12,7 +12,7 @@ Transfer::Transfer(const std::string &pinyin_file) {
     boost::log::add_file_log
             (
                     boost::log::keywords::auto_flush = true,
-                    boost::log::keywords::file_name = "gen_voice_tf.log",
+                    boost::log::keywords::file_name = "hanzi2pinyin.log",
                     boost::log::keywords::format = "[%TimeStamp%]: %Message%"
             );
     boost::log::add_common_attributes();
@@ -25,6 +25,7 @@ Transfer::Transfer(const std::string &pinyin_file) {
 Transfer::~Transfer() {}
 
 std::string Transfer::get_pinyin(const std::string &word) {
+    BOOST_LOG_TRIVIAL(trace) << "Entering get_pinyin with word: " << word;
     std::string ret;
     std::vector<std::string> words = split_name(word);
     for (auto const &w : words) {
@@ -44,6 +45,7 @@ std::string Transfer::get_pinyin(const std::string &word) {
         ret.append(" ");
     }
     ret.append(".");
+    BOOST_LOG_TRIVIAL(trace) << "Exiting get_pinyin with ret: " << ret;
     return ret;
 }
 
